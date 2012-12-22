@@ -1,4 +1,4 @@
 euler
 =====
 
-Project Euler problems
+Project Euler problems.  See http://projecteuler.net
