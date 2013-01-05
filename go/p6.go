@@ -15,7 +15,7 @@ package main
 import "fmt"
 
 func main() {
-    // n(n + 1) / 2
+  // n(n + 1) / 2
 	sum := (100 * 101) / 2
 	squareOfSum := sum * sum
 	
