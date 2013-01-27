@@ -8,39 +8,26 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
-	"strconv"
-	"strings"
 )
 
 func main() {
-	sums := make(chan int64)
-	
-	go sumFile("prime1-1mil.txt", sums)
-	go sumFile("prime1mil-2mil.txt", sums)
-	
-	sum1 := <- sums
-	sum2 := <- sums
-	
-	fmt.Println(sum1)
-	fmt.Println(sum2)
-	
-	fmt.Println(sum1 + sum2)
+	fmt.Println(sumNPrimes(2000000))
 }
 
-func sumFile(fileName string, out chan<- int64) {
-	file, _ := ioutil.ReadFile(fileName)
-	lines := strings.Split(string(file), "\r\n")
+func sumNPrimes(n int64) int64 {
+	ints := make([]bool, n)
+	sum := int64(2)
 	
-	var sum int64 = 0
+	var i, j int64
 	
-	for _, line := range lines {
-		
-		for _, n := range strings.Split(line, ",") {
-			prime, _ := strconv.Atoi(n)						
-			sum += int64(prime)
+	for i = 3; i < n; i += 2 {
+		if !ints[i] {
+			sum += i
+			for j = i; j < n; j += i {
+				ints[j] = true
+			}
 		}
 	}
 	
-	out <- sum
+	return sum
 }
