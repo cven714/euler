@@ -15,8 +15,8 @@ import "fmt"
 func main() {
 	for m := 30; m > 1; m-- {
 		for n := m - 1; n > 0; n-- {
-			a, b, c := (m * m) - (n * n), 2 * m * n, (m * m) + (n * n)
-			if a + b + c == 1000 {
+			a, b, c := (m*m)-(n*n), 2*m*n, (m*m)+(n*n)
+			if a+b+c == 1000 {
 				fmt.Printf("%d %d %d -> ", a, b, c)
 				fmt.Println(a * b * c)
 				break

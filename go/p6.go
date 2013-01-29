@@ -15,12 +15,12 @@ package main
 import "fmt"
 
 func main() {
-  // n(n + 1) / 2
+	// n(n + 1) / 2
 	sum := (100 * 101) / 2
 	squareOfSum := sum * sum
-	
+
 	// n(n + 1)(2n + 1) / 6
 	sumOfSquares := (100 * 101 * 201) / 6
-	
+
 	fmt.Println(squareOfSum - sumOfSquares)
 }

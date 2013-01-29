@@ -14,12 +14,12 @@ import (
 
 func main() {
 	sum := 0
-	
+
 	for curr, prev := 2, 1; curr < 4000000; curr, prev = (curr + prev), curr {
-		if curr % 2 == 0 {
+		if curr%2 == 0 {
 			sum += curr
 		}
 	}
-	
+
 	fmt.Println(sum)
 }

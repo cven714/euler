@@ -17,9 +17,9 @@ func main() {
 func sumNPrimes(n int64) int64 {
 	ints := make([]bool, n)
 	sum := int64(2)
-	
+
 	var i, j int64
-	
+
 	for i = 3; i < n; i += 2 {
 		if !ints[i] {
 			sum += i
@@ -28,6 +28,6 @@ func sumNPrimes(n int64) int64 {
 			}
 		}
 	}
-	
+
 	return sum
 }

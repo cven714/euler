@@ -11,10 +11,10 @@ import "fmt"
 func main() {
 	ch := make(chan int)
 	go Generate(ch)
-	
+
 	for i := 0; i < 10001; i++ {
 		prime := <-ch
-		fmt.Printf("Prime %d: %d \n", i + 1, prime)
+		fmt.Printf("Prime %d: %d \n", i+1, prime)
 		ch1 := make(chan int)
 		go Filter(ch, ch1, prime)
 		ch = ch1
