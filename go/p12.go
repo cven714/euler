@@ -23,6 +23,79 @@ import (
 	"fmt"
 )
 
+var primes []uint64
+
+func init() {
+	primes = generatePrimes(15000)
+}
+
 func main() {
-	fmt.Println("Hello, Jim Lee")
+	// Start at the 500th triangle number.
+	var triangle, n uint64 = 125250, 500
+	
+	for {
+		factors := factor(triangle)
+		divisors := countDivisors(factors)
+		
+		if divisors > 500 {
+			fmt.Printf("%d with factors %v has %d divisors", triangle, factors, divisors)
+			break
+		} else {
+			n++
+			triangle += n
+		}
+	}
+}
+
+func factor(n uint64) []uint64 {
+	if n == 1 {
+		return []uint64{}
+	}
+	
+	for i := 0; primes[i] <= n; i++ {
+		p := primes[i]
+		if n % p == 0 {
+			return append(factor(n / p), p)
+		}
+	}
+	
+	return nil
+}
+
+func countDivisors(factors []uint64) int {
+	exp := make(map[uint64]int)
+	
+	for _, prime := range factors {
+		e, ok := exp[prime]
+		if !ok {
+			e = 0
+		}
+		
+		exp[prime] = e + 1
+	}
+	
+	divisors := 1
+	for _, e := range exp {
+		divisors *= e + 1
+	}
+	
+	return divisors
+}
+
+func generatePrimes(max uint64) []uint64 {
+	ints := make([]bool, max)
+	primes := make([]uint64, 0, max/4)
+	var i, j uint64
+
+	primes = append(primes, 2)
+	for i = 3; i < max; i += 2 {
+		if !ints[i] {
+			primes = append(primes, i)
+			for j = i; j < max; j += i {
+				ints[j] = true
+			}
+		}
+	}
+
+	return primes
 }
