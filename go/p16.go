@@ -9,22 +9,22 @@ package main
 import (
 	"fmt"
 	"math/big"
-	"strings"
 	"strconv"
+	"strings"
 )
 
 func main() {
 	n := big.NewInt(0)
 	two := big.NewInt(2)
 	exp := big.NewInt(1000)
-	
+
 	n = n.Exp(two, exp, nil)
-	
-	sum := 0	
+
+	sum := 0
 	for _, digit := range strings.Split(n.String(), "") {
 		d, _ := strconv.Atoi(digit)
 		sum += d
 	}
-	
+
 	fmt.Println(sum)
 }
