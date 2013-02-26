@@ -23,9 +23,9 @@ func main() {
 	for width := 3; width <= 1001; width += 2 {
 		for corners := 0; corners < 4; corners++ {
 			n += width - 1
-			sum += n			
+			sum += n
 		}
 	}
-	
+
 	fmt.Println(sum)
 }

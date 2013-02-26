@@ -33,11 +33,11 @@ func init() {
 func main() {
 	// Start at the 500th triangle number.
 	var triangle, n uint64 = 125250, 500
-	
+
 	for {
 		factors := factor(triangle)
 		divisors := countDivisors(factors)
-		
+
 		if divisors > 500 {
 			fmt.Printf("%d with factors %v has %d divisors", triangle, factors, divisors)
 			break
@@ -52,33 +52,33 @@ func factor(n uint64) []uint64 {
 	if n == 1 {
 		return []uint64{}
 	}
-	
+
 	for i := 0; primes[i] <= n; i++ {
 		p := primes[i]
-		if n % p == 0 {
-			return append(factor(n / p), p)
+		if n%p == 0 {
+			return append(factor(n/p), p)
 		}
 	}
-	
+
 	return nil
 }
 
 func countDivisors(factors []uint64) int {
 	exp := make(map[uint64]int)
-	
+
 	for _, prime := range factors {
 		e, ok := exp[prime]
 		if !ok {
 			e = 0
 		}
-		
+
 		exp[prime] = e + 1
 	}
-	
+
 	divisors := 1
 	for _, e := range exp {
 		divisors *= e + 1
 	}
-	
+
 	return divisors
 }

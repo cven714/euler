@@ -27,52 +27,51 @@ var primes map[int]struct{}
 
 func init() {
 	prime := struct{}{}
-	primes = make(map[int]struct{})	
-	
+	primes = make(map[int]struct{})
+
 	for _, p := range utils.PrimesUpTo(10000) {
 		primes[int(p)] = prime
 	}
 }
 
-func main() {	
+func main() {
 	maxConsecutive, ab := 0, 1
-	
+
 	for a := 0; a < 1000; a++ {
 		if _, aPrime := primes[a]; aPrime {
 			for b := 0; b < 1000; b++ {
 				if _, bPrime := primes[b]; bPrime {
-					if consecutive, prod := consecutivePrimes(a, b), a * b; consecutive > maxConsecutive {
+					if consecutive, prod := consecutivePrimes(a, b), a*b; consecutive > maxConsecutive {
 						maxConsecutive, ab = consecutive, prod
 					}
-					if consecutive, prod := consecutivePrimes(-a, b), -a * b; consecutive > maxConsecutive {
+					if consecutive, prod := consecutivePrimes(-a, b), -a*b; consecutive > maxConsecutive {
 						maxConsecutive, ab = consecutive, prod
 					}
-					if consecutive, prod := consecutivePrimes(a, -b), a * -b; consecutive > maxConsecutive {
+					if consecutive, prod := consecutivePrimes(a, -b), a*-b; consecutive > maxConsecutive {
 						maxConsecutive, ab = consecutive, prod
 					}
-					if consecutive, prod := consecutivePrimes(-a, -b), -a * -b; consecutive > maxConsecutive {
+					if consecutive, prod := consecutivePrimes(-a, -b), -a*-b; consecutive > maxConsecutive {
 						maxConsecutive, ab = consecutive, prod
 					}
 				}
 			}
 		}
 	}
-	
+
 	fmt.Println(maxConsecutive, ab)
 }
 
 func consecutivePrimes(a, b int) int {
-	n := 0;
+	n := 0
 	for {
-		fn := (n*n) + (a*n) + b	
-		
+		fn := (n * n) + (a * n) + b
+
 		if _, prime := primes[fn]; !prime {
 			break
-		} 
-		
+		}
+
 		n++
 	}
 
 	return n
 }
-
