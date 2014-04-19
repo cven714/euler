@@ -22,8 +22,7 @@ def upto(n):
 		yield 2
 	
 	max = n + 1
-	prime = [i % 2 != 0 for i in xrange(max)]
-	prime[1], prime[2] = False, True
+	prime = [True] * max
 
 	for i in xrange(3, max, 2):
 		if prime[i]:
