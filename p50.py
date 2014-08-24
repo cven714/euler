@@ -11,24 +11,21 @@ import imp
 primes = imp.load_source('primes', 'utils/primes.py')
 
 mil = 1000000
-primeList = list(primes.upto(mil))
-primeSet = set(primeList)
+prime_list = list(primes.upto(mil))
+prime_set = set(prime_list)
 
 consecutive = 22
 prime = 0
+n = len(prime_list)
 
-for i in range(len(primeList)):
-  print i
+for i in range(n):
   c = consecutive
-  s = sum(primeList[i:c])
-  while s < mil and i + c < len(primeList):
-    if s in primeSet:
-      #print c, s
+  s = sum(prime_list[i:i+c])
+  while s < mil and i + c < n:
+    if s in prime_set:
       consecutive, prime = c, s
 
-    s += primeList[i + c]
+    s += prime_list[i + c]
     c += 1
 
 print consecutive, prime
-
-
